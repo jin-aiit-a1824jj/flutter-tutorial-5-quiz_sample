@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quizsampel/quiz_brain.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 void main() => runApp(Quiz());
 
@@ -111,7 +112,39 @@ class _QuizPageState extends State<QuizPage> {
         ));
       }
       quizBrain.nextQuestionNumber();
+      if (quizBrain.isQuestionNumberMaximum()) {
+        showAlert();
+      }
     });
+  }
+
+  void showAlert() {
+    var alertStyle = AlertStyle(
+      descStyle: TextStyle(fontSize: 14),
+    );
+
+    Alert(
+      context: context,
+      style: alertStyle,
+      type: AlertType.none,
+      title: "Finished!",
+      desc: "You've reached the end of the quiz",
+      buttons: [
+        DialogButton(
+          child: Text(
+            "CANCEL",
+            style: TextStyle(color: Colors.white, fontSize: 24),
+          ),
+          onPressed: () {
+            setState(() {
+              quizBrain.resetQuestionNumber();
+              scoreKeeper.clear();
+              Navigator.pop(context);
+            });
+          },
+        ),
+      ],
+    ).show();
   }
 }
 

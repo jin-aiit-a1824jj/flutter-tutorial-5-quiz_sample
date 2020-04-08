@@ -1,6 +1,7 @@
 import 'package:quizsampel/question.dart';
 
 class QuizBrain {
+
   List<Question> _questionBank = [
     Question(
         questionText: 'You can lead a cow down stairs but not up stairs.',
@@ -62,4 +63,8 @@ class QuizBrain {
     print(_questionNumber);
     print(_questionBank.length);
   }
+
+  bool isQuestionNumberMaximum() => _questionNumber == _questionBank.length - 1;
+  void resetQuestionNumber() => _questionNumber = 0;
+
 }
