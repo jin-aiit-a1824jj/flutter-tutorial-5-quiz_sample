@@ -61,6 +61,14 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
+
+                var correctAnswer = answers[questionNumber];
+                if(correctAnswer){
+                  print('user got it right!');
+                }else{
+                  print('user got it wrong!');
+                }
+
                 setState(() {
                   questionNumber+=1;
                 });
@@ -82,6 +90,14 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
+
+                var correctAnswer = answers[questionNumber];
+                if(!correctAnswer){
+                  print('user got it right!');
+                }else{
+                  print('user got it wrong!');
+                }
+
                 setState(() {
                   questionNumber+=1;
                 });
@@ -106,4 +122,10 @@ class _QuizPageState extends State<QuizPage> {
   ];
 
   int questionNumber = 0;
+
+  List<bool> answers = [
+    false,
+    true,
+    true,
+  ];
 }
