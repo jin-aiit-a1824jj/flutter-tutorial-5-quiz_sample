@@ -38,7 +38,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                quizBrain.questionBank[questionNumber].questionText,
+                quizBrain.getQuestionText(),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
@@ -62,7 +62,7 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-                var correctAnswer = quizBrain.questionBank[questionNumber].questionAnswer;
+                var correctAnswer = quizBrain.getQuestionAnswer();
                 if (correctAnswer) {
                   print('user got it right!');
                 } else {
@@ -70,9 +70,8 @@ class _QuizPageState extends State<QuizPage> {
                 }
 
                 setState(() {
-                  questionNumber += 1;
+                  quizBrain.nextQuestionNumber();
                 });
-                print(questionNumber);
               },
             ),
           ),
@@ -90,7 +89,7 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-                var correctAnswer = quizBrain.questionBank[questionNumber].questionAnswer;
+                var correctAnswer = quizBrain.getQuestionAnswer();
                 if (!correctAnswer) {
                   print('user got it right!');
                 } else {
@@ -98,9 +97,9 @@ class _QuizPageState extends State<QuizPage> {
                 }
 
                 setState(() {
-                  questionNumber += 1;
+                  quizBrain.nextQuestionNumber();
                 });
-                print(questionNumber);
+
               },
             ),
           ),
@@ -113,9 +112,6 @@ class _QuizPageState extends State<QuizPage> {
   }
 
   List<Icon> scoreKeeper = [];
-
-  int questionNumber = 0;
-
 
 }
 
